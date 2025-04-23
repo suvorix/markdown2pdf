@@ -4,13 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GitHub-like Markdown Editor</title>
-    <script src="marked.min.js"></script>
-    <link rel="stylesheet" href="github-markdown.min.css">
+    <script src="./js/marked.min.js"></script>
+    <link rel="stylesheet" href="./css/github-markdown.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji"');
-        
+        @font-face {
+            font-family: "Segoe UI";
+            src: local("Segoe UI"), 
+                url("font/Segoe UI.ttf") format("truetype");
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: "Segoe UI";
+            src: local("Segoe UI Italic"), 
+                url("font/Segoe UI Italic.ttf") format("truetype");
+            font-weight: 400;
+            font-style: italic;
+        }
+
+        @font-face {
+            font-family: "Segoe UI";
+            src: local("Segoe UI Bold"), 
+                url("font/Segoe UI Bold.ttf") format("truetype");
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: "Segoe UI";
+            src: local("Segoe UI Bold Italic"), 
+                url("font/Segoe UI Bold Italic.ttf") format("truetype");
+            font-weight: 700;
+            font-style: italic;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+            font-family: "Segoe UI", Arial, sans-serif;
             margin: 0;
             padding: 0;
             display: flex;
@@ -153,18 +183,29 @@
     </div>
     <div class="container">
         <div class="editor">
-            <textarea id="markdownInput" placeholder="Введите Markdown..."></textarea>
+            <textarea id="markdownInput" placeholder="Введите Markdown...">123</textarea>
         </div>
         <div class="preview">
             <div class="markdown-body" id="previewContent"></div>
         </div>
     </div>
 
+    
+	<script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+	<script type="text/javascript" src="./js/polyfills.umd.js"></script>
+	<script type="text/javascript" src="./js/jspdf.umd.js"></script>
+
     <script>
+        var jsPDF = window.jspdf.jsPDF;
+        var PDF = new jsPDF('p', 'pt', 'letter');
+
+        PDF.addFont("./font/Segoe UI.ttf", "Segoe UI", "normal");
+        PDF.addFont("./font/Segoe UI Bold.ttf", "Segoe UI", "bold");
+        PDF.setFont("Segoe UI");
+
         // Инициализация
-        const markdownInput = document.getElementById('markdownInput');
-        const previewContent = document.getElementById('previewContent');
-        const downloadPdfBtn = document.getElementById('downloadPdf');
+        var markdownInput = document.getElementById('markdownInput');
+        var previewContent = document.getElementById('previewContent');
         
         // Настройка marked.js для GitHub-like преобразования
         marked.setOptions({
@@ -189,6 +230,8 @@
             document.querySelectorAll('pre code').forEach((block) => {
                 hljs.highlightBlock(block);
             });
+            
+            PDF.html(previewContent);
         }
         
         // Обновление при загрузке страницы
@@ -196,49 +239,15 @@
         
         // Обновление при изменении текста
         markdownInput.addEventListener('input', updatePreview);
-        
-        // Функция скачивания PDF
-        downloadPdfBtn.addEventListener('click', async () => {
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF({
-                orientation: 'portrait',
-                unit: 'mm'
-            });
-            
-            // Увеличиваем масштаб для лучшего качества
-            const scale = 2;
-            
-            // Конвертируем HTML в изображение с помощью html2canvas
-            const element = document.getElementById('previewContent');
-            const canvas = await html2canvas(element, {
-                scale: scale,
-                useCORS: true,
-                allowTaint: true,
-                scrollX: 0,
-                scrollY: 0,
-                windowWidth: element.scrollWidth,
-                windowHeight: element.scrollHeight
-            });
-            
-            // Размеры страницы PDF (A4)
-            const pageWidth = doc.internal.pageSize.getWidth();
-            const pageHeight = doc.internal.pageSize.getHeight();
-            
-            // Рассчитываем размеры изображения для PDF
-            const imgData = canvas.toDataURL('image/png');
-            const imgWidth = pageWidth - 20; // Отступы по 10мм с каждой стороны
-            const imgHeight = (canvas.height * imgWidth) / canvas.width;
-            
-            // Добавляем изображение в PDF
-            doc.addImage(imgData, 'PNG', 10, 10, imgWidth, imgHeight);
-            
-            // Сохраняем PDF
-            doc.save('github-markdown.pdf');
+
+        var downloadPdfBtn = document.getElementById('downloadPdf');
+        downloadPdfBtn.addEventListener('click', function(){
+			PDF.save('test.pdf');
         });
     </script>
     <!-- Подключаем highlight.js для подсветки синтаксиса как в GitHub -->
-    <link rel="stylesheet" href="github.min.css">
-    <script src="highlight.min.js"></script>
+    <link rel="stylesheet" href="./css/github.min.css">
+    <script src="./js/highlight.min.js"></script>
     <script>hljs.highlightAll();</script>
 </body>
 </html>
