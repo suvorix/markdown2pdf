@@ -191,7 +191,7 @@
     </div>
 
     
-	<script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+	<!-- <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script> -->
 	<script type="text/javascript" src="./js/polyfills.umd.js"></script>
 	<script type="text/javascript" src="./js/jspdf.umd.js"></script>
 
@@ -231,7 +231,7 @@
                 hljs.highlightBlock(block);
             });
             
-            PDF.html(previewContent);
+            //PDF.html(previewContent);
         }
         
         // Обновление при загрузке страницы
@@ -242,7 +242,8 @@
 
         var downloadPdfBtn = document.getElementById('downloadPdf');
         downloadPdfBtn.addEventListener('click', function(){
-			PDF.save('test.pdf');
+			//PDF.save('test.pdf');
+            window.print();
         });
     </script>
     <!-- Подключаем highlight.js для подсветки синтаксиса как в GitHub -->
