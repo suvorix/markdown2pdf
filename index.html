@@ -243,7 +243,10 @@
         var downloadPdfBtn = document.getElementById('downloadPdf');
         downloadPdfBtn.addEventListener('click', function(){
 			//PDF.save('test.pdf');
+            var currentTitle = document.title;
+            document.title = document.querySelector('[name="file-title"]').value;
             window.print();
+            document.title = currentTitle;
         });
     </script>
     <!-- Подключаем highlight.js для подсветки синтаксиса как в GitHub -->
