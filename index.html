@@ -1,212 +1,77 @@
 <!DOCTYPE html>
 <html lang="ru" data-theme="light">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitHub-like Markdown Editor</title>
-    <script src="./js/marked.min.js"></script>
-    <link rel="stylesheet" href="./css/github-markdown.min.css">
-    <style>
-        @font-face {
-            font-family: "Segoe UI";
-            src: local("Segoe UI"), 
-                url("font/Segoe UI.ttf") format("truetype");
-            font-weight: 400;
-            font-style: normal;
-        }
-
-        @font-face {
-            font-family: "Segoe UI";
-            src: local("Segoe UI Italic"), 
-                url("font/Segoe UI Italic.ttf") format("truetype");
-            font-weight: 400;
-            font-style: italic;
-        }
-
-        @font-face {
-            font-family: "Segoe UI";
-            src: local("Segoe UI Bold"), 
-                url("font/Segoe UI Bold.ttf") format("truetype");
-            font-weight: 700;
-            font-style: normal;
-        }
-
-        @font-face {
-            font-family: "Segoe UI";
-            src: local("Segoe UI Bold Italic"), 
-                url("font/Segoe UI Bold Italic.ttf") format("truetype");
-            font-weight: 700;
-            font-style: italic;
-        }
-
-        body {
-            font-family: "Segoe UI", Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-            color: #24292f;
-        }
-        .header {
-            background-color: white;
-            padding: 12px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #d0d7de;
-        }
-        .container {
-            display: flex;
-            flex: 1;
-            overflow: hidden;
-            background-color: #ffffff;
-        }
-        .editor, .preview {
-            flex: 1;
-            padding: 20px;
-            overflow-y: auto;
-            box-sizing: border-box;
-        }
-        .editor {
-            border-right: 1px solid #d0d7de;
-            background-color: #f6f8fa;
-        }
-        textarea {
-            width: 100%;
-            height: 100%;
-            min-height: 80vh;
-            border: 1px solid #d0d7de;
-            border-radius: 6px;
-            padding: 16px;
-            font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
-            font-size: 14px;
-            line-height: 1.5;
-            resize: none;
-            box-sizing: border-box;
-            background-color: #ffffff;
-            color: #24292f;
-        }
-        textarea:focus {
-            outline: none;
-            border-color: #0969da;
-            box-shadow: inset 0 0 0 1px #0969da;
-        }
-        .preview {
-            background-color: #ffffff;
-            padding: 32px;
-        }
-        .markdown-body {
-            box-sizing: border-box;
-            min-width: 200px;
-            max-width: 980px;
-            margin: 0 auto;
-            padding: 0;
-        }
-        button {
-            background-color: #2da44e;
-            color: white;
-            border: 1px solid rgba(27, 31, 36, 0.15);
-            padding: 6px 12px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 500;
-            line-height: 20px;
-            font-family: inherit;
-            transition: background-color 0.2s;
-        }
-        button:hover {
-            background-color: #2c974b;
-        }
-        button:active {
-            background-color: #298e46;
-        }
-        .header h1 {
-            font-size: 16px;
-            font-weight: 600;
-            margin: 0;
-        }
-        .doc_name {
-            flex: 1;
-        }
-        .doc_name p {
-            text-transform: uppercase;
-            font-size: 12px;
-            color: #57606a;
-            margin: 0;
-        }
-        .doc_name input[name="file-title"]{
-            font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
-            font-size: 18px;
-            font-weight: normal;
-            color: #000;
-            margin: 0;
-            outline: none;
-            border: none;
-            width: calc(100% - 20px);
-        }
-        @media (max-width: 767px) {
-            .markdown-body {
-                padding: 15px;
-            }
-        }
-        @media print {
-            body {
-                display: block;
-                height: auto;
-            }
-            .preview, .markdown-body {
-                padding: 0px;
-                max-width: auto;
-            }
-            .markdown-body {
-                font-size: 14px;
-            }
-            .header, .editor {
-                display: none;
-            }
-            .container {
-                display: block;
-                overflow: auto;
-            }
-        }
-    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Онлайн конвертер Markdown в PDF | Редактор с превью в реальном времени</title>
+    <meta name="description" content="Интерактивный редактор Markdown с функцией экспорта в PDF. Создавайте красивые документы, инструкции и резюме с мгновенным превью. Бесплатно и без регистрации.">
+    <script src="/js/marked.min.js"></script>
+    <link rel="stylesheet" href="/fonts/SegoeUI/stylesheet.css" />
+    <link rel="stylesheet" href="/css/github-markdown.min.css"/>
+    <link rel="stylesheet" href="/css/github.min.css"/>
 </head>
 <body>
     <div class="header">
         <div class="doc_name">
             <p>Название документа</p>
-            <input type="text" name="file-title" value="Markdown в PDF">
+            <input type="text" name="file-title" value="Markdown в PDF" />
         </div>
-        <button id="downloadPdf">Скачать PDF</button>
+        <button id="downloadPdf">Экспортировать</button>
     </div>
     <div class="container">
         <div class="editor">
-            <textarea id="markdownInput" placeholder="Введите Markdown...">123</textarea>
+            <textarea id="markdownInput" placeholder="Введите Markdown..."># Привет мир! 👋
+
+Добро пожаловать в интерактивный редактор Markdown с функцией экспорта в PDF. Создавайте красивые документы, инструкции и резюме с мгновенным превью. Бесплатно и без регистрации.
+
+## Редактируй Markdown и сразу смотри результат в PDF
+
+Инструмент совмещает удобный редактор и наглядную визуализацию. Пишите контент в левой панели и наблюдайте за его финальным видом в правой части экрана, как в настоящем WYSIWYG-редакторе.
+
+**Ключевые возможности:**
+- **Markdown разметка** — поддержка заголовков, жирного текста, списков, цитат и вставки кода.
+- **Живое превью** — моментальное отображение изменений в формате PDF-страницы.
+- **Чистый экспорт** — скачивание готового файла без лишних водяных знаков и рекламы.
+
+
+## Для чего подходит этот PDF конструктор?
+
+Этот сервис решает задачи бизнес-пользователей, фрилансеров и студентов. Он идеален для:
+
+- 📄 **Создания резюме** — чистый минималистичный дизайн, который нравится рекрутерам.
+- 📚 **Написания технической документации** — понятное отображение кода и структурированных данных.
+- 📝 **Оформления отчётов и проектов** — быстрый экспорт готовой работы в общепринятый PDF формат.
+- ✍️ **Ведения заметок** — превращайте наброски в опрятные цифровые файлы.
+
+## Преимущества нашего Markdown в PDF конвертера
+
+- ⚡ **Мгновенная синхронизация** — печатайте текст и сразу оценивайте верстку. Это экономит время на правках.
+- 🎯 **Идеальный экспорт** — мы сохраняем структуру заголовков и форматирование, чтобы ваш документ выглядел профессионально.
+- 🔓 **Полностью бесплатно** — никаких скрытых платежей, ограничений по количеству символов или файлов.
+- 🖥️ **Работает в браузере** — не требует установки программ или дополнительных расширений.
+
+## Как создать PDF из Markdown за 30 секунд?
+
+1. Введите или вставьте текст в левое окно.
+2. Проверьте внешний вид в правом окне превью.
+3. Нажмите кнопку «Экспортировать» и сохраните готовый PDF на устройство.
+
+**Начните работу прямо сейчас** — это просто, быстро и доступно каждому!
+
+> *«Простота — это высшая сложность»*  
+> Наслаждайтесь процессом создания безупречных документов ✍️🔥
+</textarea>
         </div>
         <div class="preview">
             <div class="markdown-body" id="previewContent"></div>
         </div>
     </div>
 
-    
-	<!-- <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script> -->
-	<script type="text/javascript" src="./js/polyfills.umd.js"></script>
-	<script type="text/javascript" src="./js/jspdf.umd.js"></script>
-
     <script>
-        var jsPDF = window.jspdf.jsPDF;
-        var PDF = new jsPDF('p', 'pt', 'letter');
-
-        PDF.addFont("./font/Segoe UI.ttf", "Segoe UI", "normal");
-        PDF.addFont("./font/Segoe UI Bold.ttf", "Segoe UI", "bold");
-        PDF.setFont("Segoe UI");
-
         // Инициализация
         var markdownInput = document.getElementById('markdownInput');
         var previewContent = document.getElementById('previewContent');
-        
+
         // Настройка marked.js для GitHub-like преобразования
         marked.setOptions({
             gfm: true,
@@ -220,38 +85,30 @@
             smartypants: false,
             xhtml: false
         });
-        
+
         // Функция обновления предпросмотра
         function updatePreview() {
             const markdownText = markdownInput.value;
             previewContent.innerHTML = marked.parse(markdownText);
-            
-            // Добавляем подсветку синтаксиса для блоков кода
             document.querySelectorAll('pre code').forEach((block) => {
                 hljs.highlightBlock(block);
             });
-            
-            //PDF.html(previewContent);
         }
-        
-        // Обновление при загрузке страницы
+
         updatePreview();
-        
-        // Обновление при изменении текста
         markdownInput.addEventListener('input', updatePreview);
 
         var downloadPdfBtn = document.getElementById('downloadPdf');
         downloadPdfBtn.addEventListener('click', function(){
-			//PDF.save('test.pdf');
             var currentTitle = document.title;
             document.title = document.querySelector('[name="file-title"]').value;
             window.print();
             document.title = currentTitle;
         });
     </script>
-    <!-- Подключаем highlight.js для подсветки синтаксиса как в GitHub -->
-    <link rel="stylesheet" href="./css/github.min.css">
-    <script src="./js/highlight.min.js"></script>
+
+    <link rel="stylesheet" href="/css/github.min.css" />
+    <script src="/js/highlight.min.js"></script>
     <script>hljs.highlightAll();</script>
 </body>
 </html>
