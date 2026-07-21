@@ -117,7 +117,7 @@ body .markdown-body code {
     word-break: break-word;
 }
 button {
-    background-color: #36BF64;
+    background-color: #2a994f;
     color: white;
     border: 1px solid rgba(27, 31, 36, 0.15);
     padding: 10px 15px;
@@ -130,10 +130,10 @@ button {
     transition: background-color 0.2s;
 }
 button:hover {
-    background-color: #35a55a;
+    background-color: #248043;
 }
 button:active {
-    background-color: #35a55a;
+    background-color: #248043;
 }
 button:disabled {
     opacity: 0.8;
@@ -194,7 +194,7 @@ button:disabled {
     color: #5b5b5b;
 }
 .app-footer a {
-    color: #36BF64;
+    color: #2a994f;
     text-decoration: none;
 }
 .app-footer a:hover {

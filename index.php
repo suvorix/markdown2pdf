@@ -64,11 +64,11 @@
                 &copy; <?=date('Y')?>&nbsp;&nbsp;<a href="https://suvorix.ru/" target="_blank">SUVORIX</a>&nbsp;&nbsp;<span style="color: #e3e3e3">|</span>&nbsp;&nbsp;<a href="https://github.com/suvorix/markdown2pdf" target="_blank">GitHub</a>
             </div>
         </div>
-        <div class="app-content">
+        <main class="app-content">
             <div class="header">
                 <div class="doc_name">
                     <p>Название документа</p>
-                    <input type="text" name="file-title" id="fileTitleInput" value="Markdown в PDF" />
+                    <input type="text" name="file-title" id="fileTitleInput" value="Markdown в PDF" aria-label="Название документа"/>
                 </div>
                 <button id="downloadPdf">
                     <span class="loader" style="display: none;"><svg style="margin-bottom: -2px; margin-right: 10px;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><circle cx="12" cy="2" r="0" fill="currentColor"><animate attributeName="r" begin="0" calcMode="spline" dur="1s" keySplines="0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8" repeatCount="indefinite" values="0;2;0;0"/></circle><circle cx="12" cy="2" r="0" fill="currentColor" transform="rotate(45 12 12)"><animate attributeName="r" begin="0.125s" calcMode="spline" dur="1s" keySplines="0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8" repeatCount="indefinite" values="0;2;0;0"/></circle><circle cx="12" cy="2" r="0" fill="currentColor" transform="rotate(90 12 12)"><animate attributeName="r" begin="0.25s" calcMode="spline" dur="1s" keySplines="0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8" repeatCount="indefinite" values="0;2;0;0"/></circle><circle cx="12" cy="2" r="0" fill="currentColor" transform="rotate(135 12 12)"><animate attributeName="r" begin="0.375s" calcMode="spline" dur="1s" keySplines="0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8" repeatCount="indefinite" values="0;2;0;0"/></circle><circle cx="12" cy="2" r="0" fill="currentColor" transform="rotate(180 12 12)"><animate attributeName="r" begin="0.5s" calcMode="spline" dur="1s" keySplines="0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8" repeatCount="indefinite" values="0;2;0;0"/></circle><circle cx="12" cy="2" r="0" fill="currentColor" transform="rotate(225 12 12)"><animate attributeName="r" begin="0.625s" calcMode="spline" dur="1s" keySplines="0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8" repeatCount="indefinite" values="0;2;0;0"/></circle><circle cx="12" cy="2" r="0" fill="currentColor" transform="rotate(270 12 12)"><animate attributeName="r" begin="0.75s" calcMode="spline" dur="1s" keySplines="0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8" repeatCount="indefinite" values="0;2;0;0"/></circle><circle cx="12" cy="2" r="0" fill="currentColor" transform="rotate(315 12 12)"><animate attributeName="r" begin="0.875s" calcMode="spline" dur="1s" keySplines="0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8" repeatCount="indefinite" values="0;2;0;0"/></circle></svg></span>
@@ -77,53 +77,49 @@
             </div>
             <div class="container">
                 <div class="editor">
-                    <textarea id="markdownInput" placeholder="Введите Markdown..."># Привет мир! 👋
-
-Добро пожаловать в интерактивный редактор Markdown с функцией экспорта в PDF. Создавайте красивые документы, инструкции и резюме с мгновенным превью. Бесплатно и без регистрации.
-
-## Редактируй Markdown и сразу смотри результат в PDF
-
-Инструмент совмещает простой редактор и наглядную визуализацию. Пишите контент в левой панели и наблюдайте за его финальным видом в правой части экрана.
-
-**Ключевые возможности:**
-- **Markdown разметка** — поддержка заголовков, жирного текста, списков, цитат и вставки кода.
-- **Живое превью** — моментальное отображение изменений в формате PDF-страницы.
-- **Чистый экспорт** — скачивание готового файла без лишних водяных знаков и рекламы.
-
-
-## Для чего подходит этот PDF конструктор?
-
-Этот сервис решает задачи бизнес-пользователей, фрилансеров и студентов. Он идеален для:
-
-- 📄 **Создания резюме** — чистый минималистичный дизайн, который нравится рекрутерам.
-- 📚 **Написания технической документации** — понятное отображение кода и структурированных данных.
-- 📝 **Оформления отчётов и проектов** — быстрый экспорт готовой работы в общепринятый PDF формат.
-- ✍️ **Ведения заметок** — превращайте наброски в опрятные цифровые файлы.
-
-## Преимущества этого конвертера Markdown в PDF 
-
-- ⚡ **Мгновенная синхронизация** — печатайте текст и сразу оценивайте верстку. Это экономит время на правках.
-- 🎯 **Идеальный экспорт** — конвертер сохраняет структуру заголовков и форматирование, чтобы ваш документ выглядел профессионально.
-- 🔓 **Полностью бесплатно** — никаких скрытых платежей, ограничений по количеству символов или файлов.
-- 🖥️ **Работает в браузере** — не требует установки программ или дополнительных расширений.
-
-## Как создать PDF из Markdown за 30 секунд?
-
-1. Введи или вставь текст в левое окно.
-2. Проверь внешний вид в правом окне превью.
-3. Нажми кнопку «Экспортировать» и сохрани готовый PDF на устройство.
-
-**Начни работу прямо сейчас** — это просто, быстро и доступно каждому!
-
-> *«Простота — это высшая сложность»*  
-> Наслаждайся процессом создания безупречных документов ✍️🔥
-</textarea>
+                    <textarea id="markdownInput" placeholder="Введите Markdown..." aria-label="Markdown редактор"></textarea>
                 </div>
                 <div class="preview">
-                    <div class="markdown-body" id="previewContent"></div>
+                    <div class="markdown-body" id="previewContent">
+                        <h1>Привет мир! 👋</h1>
+                        <p>Добро пожаловать в интерактивный редактор Markdown с функцией экспорта в PDF. Создавайте красивые документы, инструкции и резюме с мгновенным превью. Бесплатно и без регистрации.</p>
+                        <h2>Редактируй Markdown и сразу смотри результат в PDF</h2>
+                        <p>Инструмент совмещает простой редактор и наглядную визуализацию. Пишите контент в левой панели и наблюдайте за его финальным видом в правой части экрана.</p>
+                        <p><strong>Ключевые возможности:</strong></p>
+                        <ul>
+                        <li><strong>Markdown разметка</strong> — поддержка заголовков, жирного текста, списков, цитат и вставки кода.</li>
+                        <li><strong>Живое превью</strong> — моментальное отображение изменений в формате PDF-страницы.</li>
+                        <li><strong>Чистый экспорт</strong> — скачивание готового файла без лишних водяных знаков и рекламы.</li>
+                        </ul>
+                        <h2>Для чего подходит этот PDF конструктор?</h2>
+                        <p>Этот сервис решает задачи бизнес-пользователей, фрилансеров и студентов. Он идеален для:</p>
+                        <ul>
+                        <li>📄 <strong>Создания резюме</strong> — чистый минималистичный дизайн, который нравится рекрутерам.</li>
+                        <li>📚 <strong>Написания технической документации</strong> — понятное отображение кода и структурированных данных.</li>
+                        <li>📝 <strong>Оформления отчётов и проектов</strong> — быстрый экспорт готовой работы в общепринятый PDF формат.</li>
+                        <li>✍️ <strong>Ведения заметок</strong> — превращайте наброски в опрятные цифровые файлы.</li>
+                        </ul>
+                        <h2>Преимущества этого конвертера Markdown в PDF</h2>
+                        <ul>
+                        <li>⚡ <strong>Мгновенная синхронизация</strong> — печатайте текст и сразу оценивайте верстку. Это экономит время на правках.</li>
+                        <li>🎯 <strong>Идеальный экспорт</strong> — конвертер сохраняет структуру заголовков и форматирование, чтобы ваш документ выглядел профессионально.</li>
+                        <li>🔓 <strong>Полностью бесплатно</strong> — никаких скрытых платежей, ограничений по количеству символов или файлов.</li>
+                        <li>🖥️ <strong>Работает в браузере</strong> — не требует установки программ или дополнительных расширений.</li>
+                        </ul>
+                        <h2>Как создать PDF из Markdown за 30 секунд?</h2>
+                        <ol>
+                        <li>Введи или вставь текст в левое окно.</li>
+                        <li>Проверь внешний вид в правом окне превью.</li>
+                        <li>Нажми кнопку «Экспортировать» и сохрани готовый PDF на устройство.</li>
+                        </ol>
+                        <p><strong>Начни работу прямо сейчас</strong> — это просто, быстро и доступно каждому!</p>
+                        <blockquote>
+                        <p><em>«Простота — это высшая сложность»</em><br>Наслаждайся процессом создания безупречных документов ✍️🔥</p>
+                        </blockquote>
+                    </div>
                 </div>
             </div>
-        </div>
+        </main>
     </div>
     
     <script src="/js/DocumentManager.js"></script>
