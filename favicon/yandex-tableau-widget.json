@@ -1,0 +1,8 @@
+{
+    "version": "1.2",
+    "api_version": 3,
+    "layout": {
+        "logo": "https://md2pdf.suvorix.ru/favicon/yandex-tableau-widget-300x100.png",
+        "color": "#ffffff"
+    }
+}
